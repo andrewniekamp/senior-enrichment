@@ -1,22 +1,30 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import store, { gotCampuses } from '../store';
 import AddCampus from './AddCampus';
 
 export default class Campuses extends React.Component {
   constructor() {
     super()
-    this.state = {
-      campuses: []
-    }
+    this.state = store.getState();
   }
+
   componentDidMount() {
+    this.unsubscribe = store.subscribe( () => this.setState(store.getState()));
+
     axios.get('/api/campuses')
     .then( res => {
-      this.setState({ campuses: res.data });
+      const action = gotCampuses(res.data);
+      store.dispatch(action);
     });
   }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   render() {
     return (
       <div>

@@ -4,3 +4,7 @@ import createLogger from 'redux-logger'; // https://github.com/evgenyrodionov/re
 import thunkMiddleware from 'redux-thunk'; // https://github.com/gaearon/redux-thunk
 
 export default createStore(rootReducer, applyMiddleware(thunkMiddleware, createLogger()))
+
+// Needed to make exports available when importing store into components
+export * from './reducers/campuses';
+export * from './reducers/students';

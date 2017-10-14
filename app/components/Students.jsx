@@ -1,22 +1,30 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import store, { gotStudents } from '../store';
 import AddStudent from './AddStudent';
 
 export default class Students extends React.Component {
   constructor() {
     super()
-    this.state = {
-      students: []
-    }
+    this.state = store.getState();
   }
+
   componentDidMount() {
+    this.unsubscribe = store.subscribe( () => this.setState(store.getState()));
+
     axios.get('/api/students')
     .then( res => {
-      this.setState({ students: res.data });
+      const action = gotStudents(res.data);
+      store.dispatch(action);
     });
   }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   render() {
     return (
       <div>
