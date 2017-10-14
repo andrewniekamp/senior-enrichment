@@ -21,6 +21,16 @@ api.get('/campuses/:id', (req, res) => {
 	})
 })
 
+api.post('/campuses/add', (req, res) => {
+	db.model('campus').create({
+		name: req.body.name,
+		imageURL: req.body.imageURL
+	})
+	.then( campus => {
+		res.send(campus);
+	})
+})
+
 api.get('/students', (req, res) => {
 	db.model('student').findAll()
 	.then( student => {
