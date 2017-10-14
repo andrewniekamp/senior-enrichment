@@ -12,7 +12,6 @@ export default class Campuses extends React.Component {
   componentDidMount() {
     axios.get('/api/campuses')
     .then( res => {
-      console.log(res.data);
       this.setState({ campuses: res.data });
     });
   }

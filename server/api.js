@@ -21,4 +21,18 @@ api.get('/campuses/:id', (req, res) => {
 	})
 })
 
+api.get('/students', (req, res) => {
+	db.model('student').findAll()
+	.then( student => {
+		res.send(student);
+	})
+})
+
+api.get('/students/:id', (req, res) => {
+	db.model('student').findById(req.params.id, {include: [{ model: db.model('campus')}]})
+	.then( student => {
+		res.send(student);
+	})
+})
+
 module.exports = api
