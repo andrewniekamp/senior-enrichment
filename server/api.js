@@ -45,4 +45,18 @@ api.get('/students/:id', (req, res) => {
 	})
 })
 
+api.post('/students/add', (req, res) => {
+	db.model('campus').findById(req.body.campusId)
+	.then( foundCampus => {
+		db.model('student').create({
+			name: req.body.name,
+			email: req.body.email,
+			campus: foundCampus
+		})
+		.then( campus => {
+			res.send(campus);
+		})
+	})
+})
+
 module.exports = api
