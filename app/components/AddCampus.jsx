@@ -36,13 +36,17 @@ export default class AddCampus extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="input-group input-group-lg">
+          <label htmlFor="campus-name-input">Campus Name</label>
           <input
+            id="campus-name-input"
             name="newName"
             type="text"
             value={this.state.newName}
             onChange={this.handleNameChange}
           />
+          <label htmlFor="campus-image-input">Image URL</label>
           <input
+            id="campus-image-input"
             name="newImageURL"
             type="text"
             value={this.state.newImageURL}

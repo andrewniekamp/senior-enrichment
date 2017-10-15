@@ -5,11 +5,13 @@ export default class AddCampus extends React.Component {
   constructor() {
     super()
     this.state = {
-      newName: '',
+      newFirstName: '',
+      newLastName: '',
       newEmail: '',
       campuses: []
     }
-    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+    this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,8 +23,11 @@ export default class AddCampus extends React.Component {
     });
   }
 
-  handleNameChange(event) {
-    this.setState({ newName: event.target.value });
+  handleFirstNameChange(event) {
+    this.setState({ newFirstName: event.target.value });
+  }
+  handleLastNameChange(event) {
+    this.setState({ newLastName: event.target.value });
   }
   handleEmailChange(event) {
     this.setState({ newEmail: event.target.value });
@@ -31,12 +36,14 @@ export default class AddCampus extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     axios.post('/api/students/add', {
-      name: event.target.newName.value,
+      firstName: event.target.newFirstName.value,
+      lastName: event.target.newLastName.value,
       email: event.target.newEmail.value,
       campusId: event.target.associatedCampus.value
     })
     .then( () => {
-      this.setState({ newName: '' });
+      this.setState({ newFirstName: '' });
+      this.setState({ newLastName: '' });
       this.setState({ newEmail: '' })
     })
   }
@@ -45,19 +52,35 @@ export default class AddCampus extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="input-group input-group-lg">
+          <label htmlFor="first-name-input">First Name</label>
           <input
-            name="newName"
+            id="first-name-input"
+            name="newFirstName"
             type="text"
-            value={this.state.newName}
-            onChange={this.handleNameChange}
+            value={this.state.newFirstName}
+            onChange={this.handleFirstNameChange}
           />
+          <label htmlFor="last-name-input">Last Name</label>
           <input
+            id="last-name-input"
+            name="newLastName"
+            type="text"
+            value={this.state.newLastName}
+            onChange={this.handleLastNameChange}
+          />
+          <label htmlFor="email-input">Email</label>
+          <input
+            id="email-input"
             name="newEmail"
             type="text"
             value={this.state.newEmail}
             onChange={this.handleEmailChange}
           />
-          <select name="associatedCampus">
+          <label htmlFor="campus-selection">Campus</label>
+          <select
+            id="campus-selection"
+            name="associatedCampus"
+          >
           {
             this.state.campuses.map( campus => {
               return (

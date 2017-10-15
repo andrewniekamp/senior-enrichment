@@ -47,7 +47,8 @@ api.get('/students/:id', (req, res) => {
 
 api.post('/students/add', (req, res) => {
 	db.model('student').create({
-		name: req.body.name,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
 		email: req.body.email,
 		campusId: req.body.campusId
 	})
