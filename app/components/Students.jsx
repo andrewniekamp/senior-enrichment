@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import store, { gotStudents } from '../store';
+import store, { gotStudents, gotCampuses } from '../store';
 import AddStudent from './AddStudent';
 
 export default class Students extends React.Component {
@@ -17,6 +17,11 @@ export default class Students extends React.Component {
     axios.get('/api/students')
     .then( res => {
       const action = gotStudents(res.data);
+      store.dispatch(action);
+    });
+    axios.get('/api/campuses')
+    .then( res => {
+      const action = gotCampuses(res.data);
       store.dispatch(action);
     });
   }
@@ -34,7 +39,12 @@ export default class Students extends React.Component {
           store.getState().students.map( student => {
             return (
               <div key={student.id} className="student-container">
-                <h4><Link to={`/students/${student.id}`}>{student.firstName} {student.lastName} {student.email}</Link> {student.campus.name} </h4>
+                <h4>
+                  <Link to={`/students/${student.id}`}>{student.firstName} {student.lastName} {student.email}</Link>
+                  { store.getState().campuses[0] &&
+                    store.getState().campuses[student.campusId -1].name
+                  }
+                </h4>
               </div>
             )
           })
