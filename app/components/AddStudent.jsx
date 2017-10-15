@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import store, { addedStudent } from '../store';
+
 export default class AddCampus extends React.Component {
   constructor() {
     super()
@@ -41,10 +43,12 @@ export default class AddCampus extends React.Component {
       email: event.target.newEmail.value,
       campusId: event.target.associatedCampus.value
     })
-    .then( () => {
+    .then( (res) => {
       this.setState({ newFirstName: '' });
       this.setState({ newLastName: '' });
       this.setState({ newEmail: '' })
+      const action = addedStudent(res.data);
+      store.dispatch(action);
     })
   }
 

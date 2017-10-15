@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
-import store, { gotStudents, gotCampuses } from '../store';
+import store from '../store';
 import AddStudent from './AddStudent';
 
 export default class Students extends React.Component {
@@ -13,17 +12,6 @@ export default class Students extends React.Component {
 
   componentDidMount() {
     this.unsubscribe = store.subscribe( () => this.setState(store.getState()));
-
-    axios.get('/api/students')
-    .then( res => {
-      const action = gotStudents(res.data);
-      store.dispatch(action);
-    });
-    axios.get('/api/campuses')
-    .then( res => {
-      const action = gotCampuses(res.data);
-      store.dispatch(action);
-    });
   }
 
   componentWillUnmount() {

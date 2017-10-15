@@ -23,7 +23,7 @@ export default class Campuses extends React.Component {
         <h2>Campus: {this.state.campus.name}</h2>
         <h3>Students</h3>
         { this.state.campus.students &&
-          this.state.campus.students.map( student => {
+          store.getState().students.map( student => {
             return (
               <Link key={student.id} to={`/students/${student.id}`}>{student.name}</Link>
             )

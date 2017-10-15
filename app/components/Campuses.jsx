@@ -13,12 +13,6 @@ export default class Campuses extends React.Component {
 
   componentDidMount() {
     this.unsubscribe = store.subscribe( () => this.setState(store.getState()));
-
-    axios.get('/api/campuses')
-    .then( res => {
-      const action = gotCampuses(res.data);
-      store.dispatch(action);
-    });
   }
 
   componentWillUnmount() {
