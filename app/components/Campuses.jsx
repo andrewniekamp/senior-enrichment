@@ -28,12 +28,15 @@ export default class Campuses extends React.Component {
   render() {
     return (
       <div>
-        <AddCampus />
-        <h2>Campuses</h2>
-        {
-          store.getState().campuses.map( campus => {
-            return (
-              <Link key={campus.id} to={`/campuses/${campus.id}`}>{campus.name}</Link>
+      <AddCampus />
+      <h2>Campuses</h2>
+      {
+        store.getState().campuses.map( campus => {
+          return (
+            <div key={campus.id} className="campus-container">
+              <h3><Link to={`/campuses/${campus.id}`}>{campus.name}</Link></h3>
+              <img src={campus.imageURL} alt="Space doge!!" />
+            </div>
             )
           })
         }

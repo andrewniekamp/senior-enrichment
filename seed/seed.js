@@ -13,7 +13,7 @@ for (let i = 0; i < campusCount; i++) {
   // let campusNameIndex = Math.floor(Math.random() * campusNames.length);
   let campusPromise = db.model('campus').create({
     name: campusNames[i],
-    imageURL: './space-doge'
+    imageURL: '/space-doge.jpg'
   })
   campusPromisesArr.push(campusPromise);
 }

@@ -33,7 +33,9 @@ export default class Students extends React.Component {
         {
           store.getState().students.map( student => {
             return (
-              <Link key={student.id} to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link>
+              <div key={student.id} className="student-container">
+                <h4><Link to={`/students/${student.id}`}>{student.firstName} {student.lastName} {student.email}</Link> {student.campus.name} </h4>
+              </div>
             )
           })
         }
