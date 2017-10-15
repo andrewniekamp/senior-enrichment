@@ -20,7 +20,7 @@ export default class Student extends React.Component {
   render() {
     return (
       <div>
-        <h2>Student: {this.state.student.name}</h2>
+        <h2>Student: {this.state.student.firstName} {this.state.student.lastName}</h2>
         <h3>Campus</h3>
         <Link to={`/campuses/${this.state.student.campusId}`}>{this.state.student.campus && this.state.student.campus.name}</Link>
       </div>

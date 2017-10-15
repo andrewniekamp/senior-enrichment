@@ -48,9 +48,7 @@ export default class AddCampus extends React.Component {
             value={this.state.newImageURL}
             onChange={this.handleImageURLChange}
           />
-          <span className="input-group-btn">
-            <button className="btn btn-default" type="submit">Chat!</button>
-          </span>
+          <button type="submit">Save</button>
         </div>
       </form>
     );

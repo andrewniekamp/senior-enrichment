@@ -2,7 +2,8 @@ const Sequelize = require('sequelize');
 const db = require('../');
 
 const Student = db.define( 'student', {
-  name: Sequelize.STRING,
+  firstName: Sequelize.STRING,
+  lastName: Sequelize.STRING,
   email: {
     type: Sequelize.STRING,
     validate: {

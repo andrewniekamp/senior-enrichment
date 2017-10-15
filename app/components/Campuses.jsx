@@ -31,7 +31,7 @@ export default class Campuses extends React.Component {
         <AddCampus />
         <h2>Campuses</h2>
         {
-          this.state.campuses.map( campus => {
+          store.getState().campuses.map( campus => {
             return (
               <Link key={campus.id} to={`/campuses/${campus.id}`}>{campus.name}</Link>
             )
