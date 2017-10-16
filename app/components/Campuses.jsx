@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
-import store, { gotCampuses } from '../store';
+import store from '../store';
 import AddCampus from './AddCampus';
 
 export default class Campuses extends React.Component {
@@ -29,7 +28,7 @@ export default class Campuses extends React.Component {
           return (
             <div key={campus.id} className="campus-container">
               <h3><Link to={`/campuses/${campus.id}`}>{campus.name}</Link></h3>
-              <img src={campus.imageURL} alt="Space doge!!" />
+              <img src={campus.imageURL} alt="Space!" />
             </div>
             )
           })

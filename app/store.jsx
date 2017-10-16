@@ -7,4 +7,5 @@ export default createStore(rootReducer, applyMiddleware(thunkMiddleware, createL
 
 // Needed to make exports available when importing store into components
 export * from './reducers/campuses';
+export * from './reducers/campus';
 export * from './reducers/students';

@@ -31,6 +31,20 @@ api.post('/campuses/add', (req, res) => {
 		})
 })
 
+api.put('/campuses/update', (req, res) => {
+	db.model('campus').update({
+		name: req.body.name,
+		imageURL: req.body.imageURL
+	}, {
+		where: { id: req.body.id },
+		returning: true,
+		plain: true
+	})
+	.then(response => {
+		res.send(response);
+	})
+})
+
 api.get('/students', (req, res) => {
 	db.model('student').findAll()
 		.then(student => {

@@ -27,12 +27,7 @@ export default class Students extends React.Component {
           store.getState().students.map( student => {
             return (
               <div key={student.id} className="student-container">
-                <h4>
                   <Link to={`/students/${student.id}`}>{student.firstName} {student.lastName} {student.email}</Link>
-                  { store.getState().campuses[0] &&
-                    store.getState().campuses[student.campusId -1].name
-                  }
-                </h4>
               </div>
             )
           })
