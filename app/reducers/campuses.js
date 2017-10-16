@@ -41,7 +41,8 @@ export default function reducer(state = [], action) {
     case ADDED_CAMPUS:
       return [...state, action.campus];
     case EDITED_CAMPUS:
-      return [state.map( campus => (campus.id !== action.campus.id)), action.campus];
+      // Returns all from prevState except one that needed update, then concats updated one from action
+      return state.filter( campus => (campus.id !== action.campus.id)).concat(action.campus);
     default:
       return state;
   }

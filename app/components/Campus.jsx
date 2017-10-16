@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import store, { gotCampus } from '../store';
-// import EditCampus from './EditCampus';
+import EditCampus from './EditCampus';
 
 export default class Campuses extends React.Component {
   constructor() {
@@ -12,6 +12,8 @@ export default class Campuses extends React.Component {
   }
 
   componentDidMount() {
+    this.unsubscribe = store.subscribe( () => this.setState(store.getState()));
+
     axios.get(`/api/campuses/${this.props.match.params.campusId}`)
     .then( res =>  res.data)
     .then( campus => {
@@ -20,12 +22,16 @@ export default class Campuses extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   render() {
     let currentCampus = store.getState().campus;
     return (
       <div>
         <h2>Campus: {currentCampus.name}</h2>
-        {/* <EditCampus name={this.state.campus.name} imageURL={this.state.campus.imageURL} /> */}
+        <EditCampus />
         <h3>Students</h3>
         {
           store.getState().students.map( student => {
