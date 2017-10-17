@@ -4,14 +4,8 @@ import axios from 'axios';
 import store, { editedStudent, gotStudent } from '../store';
 
 export default class EditStudent extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      store: store.getState(),
-      newFirstName: '',
-      newLastName: '',
-      newEmail: ''
-    }
+  constructor() {
+    super()
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -33,11 +27,9 @@ export default class EditStudent extends React.Component {
     axios.put('/api/students', { firstName, lastName, email, id })
     .then( (res) => {
       let updatedStudent = res.data[1];
-      this.setState({ newName: '' });
-      this.setState({ newImageURL: '' });
       // Put receives array, index 1 has returned object option as set in API
-      const action = editedStudent(updatedStudent);
-      store.dispatch(action);
+      const editAction = editedStudent(updatedStudent);
+      store.dispatch(editAction);
       const setCurrentAction = gotStudent(updatedStudent);
       store.dispatch(setCurrentAction);
     })
@@ -54,7 +46,6 @@ export default class EditStudent extends React.Component {
             name="newFirstName"
             type="text"
             placeholder={currentStudent.firstName}
-            onChange={this.handleNameChange}
           />
           <label htmlFor="last-name-input">Update First Name</label>
           <input
@@ -62,7 +53,6 @@ export default class EditStudent extends React.Component {
             name="newLastName"
             type="text"
             placeholder={currentStudent.lastName}
-            onChange={this.handleNameChange}
           />
           <label htmlFor="email-input">Update Email</label>
           <input
@@ -70,7 +60,6 @@ export default class EditStudent extends React.Component {
             name="newEmail"
             type="text"
             placeholder={currentStudent.email}
-            onChange={this.handleImageURLChange}
           />
           <button type="submit">Update</button>
         </div>
