@@ -87,4 +87,12 @@ api.put('/students', (req, res) => {
 	})
 })
 
+api.delete('/students/:id', (req, res) => {
+	db.model('student').findById(req.params.id)
+		.then(student => {
+			student.destroy()
+			res.json(student);
+		})
+})
+
 module.exports = api

@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-import store from '../store';
+import store, { deletedStudent } from '../store';
 import AddStudent from './AddStudent';
 
 export default class Students extends React.Component {
   constructor() {
     super()
     this.state = store.getState();
+    this.clickHandler = this.clickHandler.bind(this);
   }
 
   componentDidMount() {
@@ -16,6 +18,14 @@ export default class Students extends React.Component {
 
   componentWillUnmount() {
     this.unsubscribe();
+  }
+
+  clickHandler(event) {
+    axios.delete(`/api/students/${event.target.value}`)
+    .then( response => {
+      const action = deletedStudent(response.data);
+      store.dispatch(action);
+    })
   }
 
   render() {
@@ -28,6 +38,10 @@ export default class Students extends React.Component {
             return (
               <div key={student.id} className="student-container">
                   <Link to={`/students/${student.id}`}>{student.firstName} {student.lastName} {student.email}</Link>
+                  <button
+                  value={student.id}
+                  onClick={this.clickHandler}>
+                  Delete</button>
               </div>
             )
           })
