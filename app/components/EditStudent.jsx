@@ -4,9 +4,16 @@ import axios from 'axios';
 import store, { editedStudent, gotStudent } from '../store';
 
 export default class EditStudent extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    this.state = {
+      // This is needed as a holder for the value
+      // It comes into the form as props, but further renders
+      // will show updatedCampus (id of selected campus)
+      updatedCampus: ''
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -17,14 +24,19 @@ export default class EditStudent extends React.Component {
     this.unsubscribe();
   }
 
+  handleChange(event) {
+    this.setState({ updatedCampus: event.target.value })
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     // Only assign new values if something is defined, otherwise keep prev values
     let firstName = event.target.newFirstName.value || store.getState().student.firstName;
     let lastName = event.target.newLastName.value || store.getState().student.lastName;
     let email = event.target.newEmail.value || store.getState().student.email;
+    let campusId = this.state.updatedCampus;
     let id = store.getState().student.id;
-    axios.put('/api/students', { firstName, lastName, email, id })
+    axios.put('/api/students', { firstName, lastName, email, campusId, id })
     .then( (res) => {
       let updatedStudent = res.data[1];
       // Put receives array, index 1 has returned object option as set in API
@@ -61,6 +73,27 @@ export default class EditStudent extends React.Component {
             type="text"
             placeholder={currentStudent.email}
           />
+          <label htmlFor="campus-selection">Update Campus</label>
+          <select
+            id="campus-selection"
+            name="associatedCampus"
+            // Must set to updatedCampus if you can, otherwise
+            // it gets stuck on props and can't change
+            value={this.state.updatedCampus || this.props.campusId}
+            onChange={this.handleChange}
+          >
+          {
+            store.getState().campuses.map( campus => {
+              return (
+                <option
+                  key={campus.id}
+                  value={campus.id}>
+                  {campus.name}
+                </option>
+              )
+            })
+          }
+          </select>
           <button type="submit">Update</button>
         </div>
       </form>

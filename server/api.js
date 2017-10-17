@@ -75,6 +75,7 @@ api.put('/students', (req, res) => {
 	db.model('student').update({
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
+		campusId: req.body.campusId,
 		email: req.body.email
 	}, {
 		where: { id: req.body.id },
