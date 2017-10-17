@@ -31,7 +31,7 @@ api.post('/campuses/add', (req, res) => {
 		})
 })
 
-api.put('/campuses/update', (req, res) => {
+api.put('/campuses', (req, res) => {
 	db.model('campus').update({
 		name: req.body.name,
 		imageURL: req.body.imageURL
@@ -68,6 +68,21 @@ api.post('/students/add', (req, res) => {
 	})
 	.then(newStudent => {
 		res.send(newStudent);
+	})
+})
+
+api.put('/students', (req, res) => {
+	db.model('student').update({
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
+		email: req.body.email
+	}, {
+		where: { id: req.body.id },
+		returning: true,
+		plain: true
+	})
+	.then(response => {
+		res.send(response);
 	})
 })
 

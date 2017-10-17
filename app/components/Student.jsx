@@ -2,27 +2,41 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import EditStudent from './EditStudent';
+import store, { gotStudent } from '../store';
+
 export default class Student extends React.Component {
   constructor() {
     super()
-    this.state = {
-      student: {}
-    }
+    this.state = store.getState();
   }
 
   componentDidMount() {
     axios.get(`/api/students/${this.props.match.params.studentId}`)
-    .then( res => {
-      this.setState({ student: res.data });
+    .then( res => res.data)
+    .then( student => {
+      const action = gotStudent(student);
+      store.dispatch(action);
     });
   }
 
   render() {
+    let currentStudent = store.getState().student;
     return (
       <div>
-        <h2>Student: {this.state.student.firstName} {this.state.student.lastName}</h2>
+        <h2>Student: {currentStudent.firstName} {currentStudent.lastName}</h2>
+        <EditStudent />
         <h3>Campus</h3>
-        <Link to={`/campuses/${this.state.student.campusId}`}>{this.state.student.campus && this.state.student.campus.name}</Link>
+        {
+          store.getState().campuses.map( campus => {
+            return (
+              currentStudent.campusId === campus.id &&
+              <div key={currentStudent.id}>
+                <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
+              </div>
+            )
+          })
+        }
       </div>
     )
   }

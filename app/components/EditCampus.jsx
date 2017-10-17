@@ -38,7 +38,7 @@ export default class EditCampus extends React.Component {
     let imageURL = event.target.newImageURL.value || store.getState().campus.imageURL;
     let id = store.getState().campus.id;
     console.log({name, imageURL, id}, store.getState().campus.name)
-    axios.put('/api/campuses/update', { name, imageURL, id })
+    axios.put('/api/campuses', { name, imageURL, id })
     .then( (res) => {
       let updatedCampus = res.data[1];
       this.setState({ newName: '' });
