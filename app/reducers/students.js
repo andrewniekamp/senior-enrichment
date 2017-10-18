@@ -27,34 +27,27 @@ export function deletedStudent(student) {
 // Maybe later...
 
 // Thunk creators
-// export function fetchStudents() {
-//   return function thunk(dispatch) {
-//     axios.get('/api/students')
-//     .then( res => res.data)
-//     .then( students => {
-//       const action = getStudents(students);
-//       dispatch(action);
-//     });
-//   }
-// }
+export function fetchStudents() {
+  return function thunk(dispatch) {
+    axios.get('/api/students')
+    .then( res => res.data)
+    .then( students => {
+      const action = gotStudents(students);
+      dispatch(action);
+    });
+  }
+}
 
 export function deleteStudent(id) {
   return function thunk(dispatch) {
     axios.delete(`/api/students/${id}`)
     .then( res => res.data)
     .then( student => {
-      console.log('here: ', student)
       const action = deletedStudent(student);
       dispatch(action);
     });
   }
 }
-
-// axios.delete(`/api/students/${event.target.value}`)
-// .then( response => {
-//   const action = deletedStudent(response.data);
-//   store.dispatch(action);
-// })
 
 // Reducer
 export default function reducer(state = [], action) {

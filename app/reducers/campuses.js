@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 
 // Actions
 const GOT_CAMPUSES = 'GOT_CAMPUSES';
@@ -27,16 +27,16 @@ export function deletedCampus(campus) {
 // Couldn't get this to work yet, maybe use later
 
 // Thunk creators
-// export function fetchCampuses() {
-//   return function thunk(dispatch) {
-//     axios.get('/api/campuses')
-//     .then( res => res.data)
-//     .then( campuses => {
-//       const action = getCampuses(campuses);
-//       dispatch(action); // still dispatch from in here?
-//     });
-//   }
-// }
+export function fetchCampuses() {
+  return function thunk(dispatch) {
+    axios.get('/api/campuses')
+    .then( res => res.data)
+    .then( campuses => {
+      const action = gotCampuses(campuses);
+      dispatch(action);
+    });
+  }
+}
 
 // Reducer
 export default function reducer(state = [], action) {
