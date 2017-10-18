@@ -44,7 +44,7 @@ export default class EditStudent extends React.Component {
   }
 
   render() {
-    let currentStudent = this.state.store.student;
+    let student = this.state.store.student;
     return (
       <div className="form-container">
         <form id="edit-student-form" onSubmit={this.handleSubmit}>
@@ -54,21 +54,21 @@ export default class EditStudent extends React.Component {
               id="first-name-input"
               name="newFirstName"
               type="text"
-              placeholder={currentStudent.firstName}
+              placeholder={student.firstName}
             />
             <label htmlFor="last-name-input">Update Last Name</label>
             <input
               id="last-name-input"
               name="newLastName"
               type="text"
-              placeholder={currentStudent.lastName}
+              placeholder={student.lastName}
             />
             <label htmlFor="email-input">Update Email</label>
             <input
               id="email-input"
               name="newEmail"
               type="text"
-              placeholder={currentStudent.email}
+              placeholder={student.email}
             />
             <label htmlFor="campus-selection">Update Campus</label>
             <select
@@ -76,9 +76,14 @@ export default class EditStudent extends React.Component {
               name="associatedCampus"
               // Must set to updatedCampus if you can, otherwise
               // it gets stuck on props and can't change
-              value={this.state.updatedCampus || this.props.campusId}
+              value={this.state.updatedCampus || this.props.campusId || ''}
               onChange={this.handleChange}
             >
+              {
+                // If the student is unassigned, default to 'Unassigned'
+                !student.campusId &&
+                <option disabled>Unassigned</option>
+              }
               {
                 this.state.store.campuses.map(campus => {
                   return (

@@ -3,6 +3,7 @@ import React from 'react';
 import store, { fetchCampus } from '../store';
 import EditCampus from './EditCampus';
 import SingleStudent from './SingleStudent';
+import AssignStudent from './AssignStudent';
 
 export default class Campuses extends React.Component {
   constructor() {
@@ -21,7 +22,7 @@ export default class Campuses extends React.Component {
   }
 
   render() {
-    let campus = store.getState().campus;
+    let campus = this.state.campus;
     return (
       <div>
         <div className="campus-banner" >
@@ -29,12 +30,13 @@ export default class Campuses extends React.Component {
           <h2 className="campus-banner-name" >Campus: {campus.name}</h2>
         </div>
         <EditCampus campus={campus} />
+        <AssignStudent students={this.state.students} campusId={campus.id} />
         <h3>Students</h3>
         {
           this.state.students.map( student => {
             return (
               student.campusId === campus.id &&
-              <SingleStudent key={student.id} student={student} campus={campus} />
+              <SingleStudent key={student.id} student={student} campus={campus} canUnassign={true} />
             )
           })
         }
