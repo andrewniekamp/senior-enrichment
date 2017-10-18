@@ -39,6 +39,19 @@ export function fetchCampuses() {
   }
 }
 
+export function addCampus(newCampus) {
+  return function thunk(dispatch) {
+    axios.post('/api/campuses/add', {
+      name: newCampus.name,
+      imageURL: newCampus.imageURL
+    })
+    .then( res => res.data)
+    .then( campus => {
+      dispatch(addedCampus(campus));
+    })
+  }
+}
+
 export function deleteCampus(id) {
   return function thunk(dispatch) {
     axios.delete(`/api/campuses/${id}`)

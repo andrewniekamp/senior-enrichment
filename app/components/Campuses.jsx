@@ -28,11 +28,17 @@ export default class Campuses extends React.Component {
             this.state.campuses.sort((val1, val2) => val2.id - val1.id).map(campus => {
               return (
                 <div key={campus.id} className="campus-item">
-                  <h3><Link to={`/campuses/${campus.id}`}>{campus.name}</Link></h3>
-                  <img src={campus.imageURL} alt="Space!" />
+                  <Link to={`/campuses/${campus.id}`}>
+                    <div className="link-box">
+                      <h3>{campus.name}</h3>
+                      <img src={campus.imageURL} alt="Space!" />
+                    </div>
+                  </Link>
                   <button
+                    className="campus-button"
                     onClick={() => store.dispatch(deleteCampus(campus.id))}>
-                    Delete</button>
+                    Delete
+                  </button>
                 </div>
               )
             })

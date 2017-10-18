@@ -1,45 +1,25 @@
 import React from 'react';
-import axios from 'axios';
 
-import store, { addedCampus } from '../store';
+import store, { addCampus } from '../store';
 
-export default class AddCampus extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      newName: '',
-      newImageURL: ''
-    }
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleImageURLChange = this.handleImageURLChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const AddCampus = () => {
 
-  handleNameChange(event) {
-    this.setState({ newName: event.target.value });
-  }
-  handleImageURLChange(event) {
-    this.setState({ newImageURL: event.target.value });
-  }
-
-  handleSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
-    axios.post('/api/campuses/add', {
-      name: event.target.newName.value,
-      imageURL: event.target.newImageURL.value
-    })
-    .then( (res) => {
-      this.setState({ newName: '' });
-      this.setState({ newImageURL: '' })
-      const action = addedCampus(res.data);
-      store.dispatch(action);
-    })
+    let name = event.target.newName.value;
+    let imageURL = event.target.newImageURL.value;
+    let newCampus = { name, imageURL }
+
+    store.dispatch(addCampus(newCampus));
+
+    document.getElementById('add-campus-form').reset();
   }
 
-  render() {
-    return (
-      <div className="form-container">
-        <form onSubmit={this.handleSubmit}>
+  return (
+    <div className="form-container">
+      <form id="add-campus-form" onSubmit={handleSubmit}>
+        <h3>Add New Campus</h3>
+        <div className="form-inner">
           <div className="form-group">
             <label className="form-label" htmlFor="campus-name-input">Campus Name</label>
             <input
@@ -48,8 +28,6 @@ export default class AddCampus extends React.Component {
               className="form-input"
               name="newName"
               type="text"
-              value={this.state.newName}
-              onChange={this.handleNameChange}
             />
           </div>
           <div className="form-group">
@@ -60,13 +38,12 @@ export default class AddCampus extends React.Component {
               className="form-input"
               name="newImageURL"
               type="text"
-              value={this.state.newImageURL}
-              onChange={this.handleImageURLChange}
             />
           </div>
-          <button className="form-button" type="submit">Save</button>
-        </form>
-      </div>
-    );
-  }
+        </div>
+        <button className="form-button" type="submit">Save</button>
+      </form>
+    </div>
+  );
 }
+export default AddCampus;
