@@ -45,6 +45,14 @@ api.put('/campuses', (req, res) => {
 	})
 })
 
+api.delete('/campuses/:id', (req, res) => {
+	db.model('campus').findById(req.params.id)
+		.then(campus => {
+			campus.destroy()
+			res.json(campus);
+		})
+})
+
 api.get('/students', (req, res) => {
 	db.model('student').findAll()
 		.then(student => {

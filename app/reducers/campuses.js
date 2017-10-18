@@ -4,6 +4,7 @@
 const GOT_CAMPUSES = 'GOT_CAMPUSES';
 const ADDED_CAMPUS = 'ADDED_CAMPUS';
 const EDITED_CAMPUS = 'EDITED_CAMPUS';
+const DELETED_CAMPUS = 'DELETED_CAMPUS';
 
 // Action creators
 export function gotCampuses(campuses) {
@@ -16,6 +17,10 @@ export function addedCampus(campus) {
 }
 export function editedCampus(campus) {
   const action = { type: EDITED_CAMPUS, campus };
+  return action;
+}
+export function deletedCampus(campus) {
+  const action = { type: DELETED_CAMPUS, campus };
   return action;
 }
 
@@ -43,6 +48,9 @@ export default function reducer(state = [], action) {
     case EDITED_CAMPUS:
       // Returns all from prevState except one that needed update, then concats updated one from action
       return state.filter( campus => (campus.id !== action.campus.id)).concat(action.campus);
+    case DELETED_CAMPUS:
+      // Returns all from prevState except one deleted
+      return state.filter( campus => (campus.id !== action.campus.id));
     default:
       return state;
   }
