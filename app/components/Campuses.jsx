@@ -19,7 +19,7 @@ export default class Campuses extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="padded-container">
         <AddCampus />
         <h2>Campuses</h2>
         <div className="campus-container">

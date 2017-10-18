@@ -17,7 +17,7 @@ export default class Students extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="padded-container">
         <AddStudent />
         <h2>Students</h2>
         { this.state.students.map(student => {

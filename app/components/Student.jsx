@@ -23,7 +23,7 @@ export default class Student extends React.Component {
   render() {
     let student = this.state.student;
     return (
-      <div>
+      <div className="padded-container">
         <h2>Student: {student.firstName} {student.lastName}</h2>
         <EditStudent student={student} campusId={student.campusId} />
         <h3>Campus</h3>

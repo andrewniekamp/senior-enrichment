@@ -1,15 +1,13 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export default class Home extends React.Component {
-  constructor() {
-    super()
-  }
-  render() {
-    return (
-      <div>
-        <h2>huehue</h2>
-      </div>
-    )
-  }
+const Home = () => {
+  return (
+    <div id="home-container">
+      <div id="video-overlay" />
+      <video loop muted autoPlay src="/landing-video.mp4" />
+    </div>
+  )
 }
+
+export default Home;

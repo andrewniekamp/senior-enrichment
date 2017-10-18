@@ -24,7 +24,7 @@ export default class Campuses extends React.Component {
   render() {
     let campus = this.state.campus;
     return (
-      <div>
+      <div className="padded-container">
         <div className="campus-banner" >
           <img className="campus-banner-img" src={campus.imageURL} />
           <h2 className="campus-banner-name" >Campus: {campus.name}</h2>
