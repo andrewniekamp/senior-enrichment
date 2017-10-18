@@ -2,17 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import store, { gotCampus, deletedStudent } from '../store';
+import store, { gotCampus } from '../store';
 import EditCampus from './EditCampus';
 import SingleStudent from './SingleStudent';
-
-const studentDeleteHandler = (event) => {
-  axios.delete(`/api/students/${event.target.value}`)
-  .then( response => {
-    const action = deletedStudent(response.data);
-    store.dispatch(action);
-  })
-}
 
 export default class Campuses extends React.Component {
   constructor() {
@@ -49,7 +41,7 @@ export default class Campuses extends React.Component {
           store.getState().students.map( student => {
             return (
               student.campusId === currentCampus.id &&
-              <SingleStudent key={student.id} student={student} campus={currentCampus} clickHandler={studentDeleteHandler} />
+              <SingleStudent key={student.id} student={student} campus={currentCampus} />
             )
           })
         }

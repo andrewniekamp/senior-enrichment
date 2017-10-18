@@ -40,11 +40,11 @@ export default class App extends React.Component {
       <div>
         <Navbar />
         <Switch>
-          <Route path='/campuses/:campusId' component={Campus} />
-          <Route exact path='/campuses' component={Campuses} />
-          <Route path='/students/:studentId' component={Student} />
-          <Route exact path='/students' component={Students} />
-          <Route path='/' component={Home} />
+          <Route path="/campuses/:campusId" component={Campus} />
+          <Route exact path="/campuses" component={Campuses} />
+          <Route path="/students/:studentId" component={Student} />
+          <Route exact path="/students" component={Students} />
+          <Route path="/" component={Home} />
         </Switch>
       </div>
     )
