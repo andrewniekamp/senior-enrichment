@@ -54,48 +54,50 @@ export default class AddCampus extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="input-group input-group-lg">
-          <label htmlFor="first-name-input">First Name</label>
-          <input
-            id="first-name-input"
-            name="newFirstName"
-            type="text"
-            value={this.state.newFirstName}
-            onChange={this.handleFirstNameChange}
-          />
-          <label htmlFor="last-name-input">Last Name</label>
-          <input
-            id="last-name-input"
-            name="newLastName"
-            type="text"
-            value={this.state.newLastName}
-            onChange={this.handleLastNameChange}
-          />
-          <label htmlFor="email-input">Email</label>
-          <input
-            id="email-input"
-            name="newEmail"
-            type="text"
-            value={this.state.newEmail}
-            onChange={this.handleEmailChange}
-          />
-          <label htmlFor="campus-selection">Campus</label>
-          <select
-            id="campus-selection"
-            name="associatedCampus"
-          >
-          {
-            this.state.campuses.map( campus => {
-              return (
-                <option key={campus.id} value={campus.id}>{campus.name}</option>
-              )
-            })
-          }
-          </select>
-          <button type="submit">Save</button>
-        </div>
-      </form>
+      <div className="form-container">
+        <form onSubmit={this.handleSubmit}>
+          <div className="input-group input-group-lg">
+            <label htmlFor="first-name-input">First Name</label>
+            <input
+              id="first-name-input"
+              name="newFirstName"
+              type="text"
+              value={this.state.newFirstName}
+              onChange={this.handleFirstNameChange}
+            />
+            <label htmlFor="last-name-input">Last Name</label>
+            <input
+              id="last-name-input"
+              name="newLastName"
+              type="text"
+              value={this.state.newLastName}
+              onChange={this.handleLastNameChange}
+            />
+            <label htmlFor="email-input">Email</label>
+            <input
+              id="email-input"
+              name="newEmail"
+              type="text"
+              value={this.state.newEmail}
+              onChange={this.handleEmailChange}
+            />
+            <label htmlFor="campus-selection">Campus</label>
+            <select
+              id="campus-selection"
+              name="associatedCampus"
+            >
+            {
+              this.state.campuses.map( campus => {
+                return (
+                  <option key={campus.id} value={campus.id}>{campus.name}</option>
+                )
+              })
+            }
+            </select>
+            <button type="submit">Save</button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

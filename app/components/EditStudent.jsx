@@ -50,53 +50,55 @@ export default class EditStudent extends React.Component {
   render() {
     let currentStudent = store.getState().student;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="input-group input-group-lg">
-          <label htmlFor="first-name-input">Update Last Name</label>
-          <input
-            id="first-name-input"
-            name="newFirstName"
-            type="text"
-            placeholder={currentStudent.firstName}
-          />
-          <label htmlFor="last-name-input">Update First Name</label>
-          <input
-            id="last-name-input"
-            name="newLastName"
-            type="text"
-            placeholder={currentStudent.lastName}
-          />
-          <label htmlFor="email-input">Update Email</label>
-          <input
-            id="email-input"
-            name="newEmail"
-            type="text"
-            placeholder={currentStudent.email}
-          />
-          <label htmlFor="campus-selection">Update Campus</label>
-          <select
-            id="campus-selection"
-            name="associatedCampus"
-            // Must set to updatedCampus if you can, otherwise
-            // it gets stuck on props and can't change
-            value={this.state.updatedCampus || this.props.campusId}
-            onChange={this.handleChange}
-          >
-          {
-            store.getState().campuses.map( campus => {
-              return (
-                <option
-                  key={campus.id}
-                  value={campus.id}>
-                  {campus.name}
-                </option>
-              )
-            })
-          }
-          </select>
-          <button type="submit">Update</button>
-        </div>
-      </form>
+      <div className="form-container">
+        <form onSubmit={this.handleSubmit}>
+          <div className="input-group input-group-lg">
+            <label htmlFor="first-name-input">Update Last Name</label>
+            <input
+              id="first-name-input"
+              name="newFirstName"
+              type="text"
+              placeholder={currentStudent.firstName}
+            />
+            <label htmlFor="last-name-input">Update First Name</label>
+            <input
+              id="last-name-input"
+              name="newLastName"
+              type="text"
+              placeholder={currentStudent.lastName}
+            />
+            <label htmlFor="email-input">Update Email</label>
+            <input
+              id="email-input"
+              name="newEmail"
+              type="text"
+              placeholder={currentStudent.email}
+            />
+            <label htmlFor="campus-selection">Update Campus</label>
+            <select
+              id="campus-selection"
+              name="associatedCampus"
+              // Must set to updatedCampus if you can, otherwise
+              // it gets stuck on props and can't change
+              value={this.state.updatedCampus || this.props.campusId}
+              onChange={this.handleChange}
+            >
+            {
+              store.getState().campuses.map( campus => {
+                return (
+                  <option
+                    key={campus.id}
+                    value={campus.id}>
+                    {campus.name}
+                  </option>
+                )
+              })
+            }
+            </select>
+            <button type="submit">Update</button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

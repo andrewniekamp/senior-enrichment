@@ -1,7 +1,39 @@
 
 body {
-
+  font-family: 'Audiowide', cursive;
 }
+/* Navigation Bar */
+.nav-container {
+  display: flex;
+  min-height: 75px;
+  margin: -8px -8px 0;
+  justify-content: space-between;
+  background-color: #EBEBD3;
+}
+.logo {
+  max-height: 55px;
+  margin: 10px 25px;
+}
+.nav-link-container {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+.nav-link-container a {
+  font-size: 1.5em;
+  padding: 5px;
+  margin: 7px;
+  color: #083D77;
+}
+.nav-link-container a:hover {
+  color: #F95738;
+}
+
+/* Forms */
+.form-container {
+  padding: 15px;
+}
+
 /* Campuses */
 .campus-container {
   display: flex;
@@ -12,6 +44,7 @@ body {
   padding: 15px;
   width: 300px;
   margin: 10px auto;
+  box-shadow: 2px 3px 3px 1px rgba(0, 0, 0, .3);
 }
 .campus-item img {
   max-width: 100%;

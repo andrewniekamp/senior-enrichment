@@ -7,12 +7,13 @@ export default class Navbar extends React.Component {
   }
   render() {
     return (
-      <div>
-        <ul>
+      <div className="nav-container">
+        <img className="logo" src="/doge-logo.png" />
+        <div className="nav-link-container">
           <Link to='/'>Home</Link>
           <Link to='/campuses'>Campuses</Link>
           <Link to='/students'>Students</Link>
-        </ul>
+        </div>
       </div>
     )
   }

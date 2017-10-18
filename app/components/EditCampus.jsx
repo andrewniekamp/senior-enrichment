@@ -54,30 +54,32 @@ export default class EditCampus extends React.Component {
   render() {
     let currentCampus = store.getState().campus;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h3>{this.props.name}</h3>
-        <div className="input-group input-group-lg">
-          <label htmlFor="campus-name-input">Update Campus Name</label>
-          <input
-            id="campus-name-input"
-            name="newName"
-            type="text"
-            placeholder={currentCampus.name}
-            value={this.state.newName}
-            onChange={this.handleNameChange}
-          />
-          <label htmlFor="campus-image-input">Update Image URL</label>
-          <input
-            id="campus-image-input"
-            name="newImageURL"
-            type="text"
-            placeholder={currentCampus.imageURL}
-            value={this.state.newImageURL}
-            onChange={this.handleImageURLChange}
-          />
-          <button type="submit">Update</button>
-        </div>
-      </form>
+      <div className="form-container">
+        <form className="form-container" onSubmit={this.handleSubmit}>
+          <h3>{this.props.name}</h3>
+          <div className="input-group input-group-lg">
+            <label htmlFor="campus-name-input">Update Campus Name</label>
+            <input
+              id="campus-name-input"
+              name="newName"
+              type="text"
+              placeholder={currentCampus.name}
+              value={this.state.newName}
+              onChange={this.handleNameChange}
+            />
+            <label htmlFor="campus-image-input">Update Image URL</label>
+            <input
+              id="campus-image-input"
+              name="newImageURL"
+              type="text"
+              placeholder={currentCampus.imageURL}
+              value={this.state.newImageURL}
+              onChange={this.handleImageURLChange}
+            />
+            <button type="submit">Update</button>
+          </div>
+        </form>
+      </div>
     );
   }
 }
