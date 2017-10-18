@@ -39,6 +39,21 @@ export function fetchStudents() {
   }
 }
 
+export function addStudent(newStudent) {
+  return function thunk(dispatch) {
+    axios.post('/api/students/add', {
+      firstName: newStudent.firstName,
+      lastName: newStudent.lastName,
+      email: newStudent.email,
+      campusId: newStudent.campusId
+    })
+    .then( res => res.data)
+    .then( student => {
+      dispatch(addedStudent(student));
+    })
+  }
+}
+
 export function deleteStudent(id) {
   return function thunk(dispatch) {
     axios.delete(`/api/students/${id}`)

@@ -6,10 +6,10 @@ const AddCampus = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    let name = event.target.newName.value;
-    let imageURL = event.target.newImageURL.value;
-    let newCampus = { name, imageURL }
-
+    const newCampus = {
+      name: event.target.newName.value,
+      imageURL: event.target.newImageURL.value
+    }
     store.dispatch(addCampus(newCampus));
 
     document.getElementById('add-campus-form').reset();
