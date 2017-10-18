@@ -1,7 +1,7 @@
 
-body {
+/* body {
   font-family: 'Audiowide', cursive;
-}
+} */
 /* Navigation Bar */
 .nav-container {
   display: flex;
@@ -40,12 +40,30 @@ body {
   flex-flow: row wrap;
 }
 .campus-item {
-  border: 4px solid #F95738;
+  /* border: 4px solid #F95738; */
   padding: 15px;
   width: 300px;
   margin: 10px auto;
-  box-shadow: 2px 3px 3px 1px rgba(0, 0, 0, .3);
+  /* box-shadow: 2px 3px 3px 1px rgba(0, 0, 0, .3); */
 }
 .campus-item img {
   max-width: 100%;
+}
+
+/* Single Campus */
+.campus-banner-name {
+  margin: 0;
+  text-align: center;
+  line-height: 150px;
+  background-color: rgba(255, 255, 255, 0.4)
+}
+.campus-banner {
+  margin: 0 -8px;
+}
+.campus-banner-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  position: absolute;
+  z-index: -1;
 }

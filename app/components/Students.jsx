@@ -1,15 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import store, { deletedStudent } from '../store';
 import AddStudent from './AddStudent';
+import SingleStudent from './SingleStudent';
+
+// THIS IS IN TWO PLACES (ALSO IN CAMPUS) -- REFACTOR, BUT HOW? THUNK?
+const studentDeleteHandler = (event) => {
+  axios.delete(`/api/students/${event.target.value}`)
+  .then( response => {
+    const action = deletedStudent(response.data);
+    store.dispatch(action);
+  })
+}
 
 export default class Students extends React.Component {
   constructor() {
     super()
     this.state = store.getState();
-    this.clickHandler = this.clickHandler.bind(this);
   }
 
   componentDidMount() {
@@ -20,14 +28,6 @@ export default class Students extends React.Component {
     this.unsubscribe();
   }
 
-  clickHandler(event) {
-    axios.delete(`/api/students/${event.target.value}`)
-    .then( response => {
-      const action = deletedStudent(response.data);
-      store.dispatch(action);
-    })
-  }
-
   render() {
     return (
       <div>
@@ -36,13 +36,7 @@ export default class Students extends React.Component {
         {
           store.getState().students.map( student => {
             return (
-              <div key={student.id} className="student-container">
-                  <Link to={`/students/${student.id}`}>{student.firstName} {student.lastName} {student.email}</Link>
-                  <button
-                  value={student.id}
-                  onClick={this.clickHandler}>
-                  Delete</button>
-              </div>
+              <SingleStudent key={student.id} student={student} clickHandler={studentDeleteHandler} />
             )
           })
         }

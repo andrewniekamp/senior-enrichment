@@ -2,8 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import store, { gotCampus } from '../store';
+import store, { gotCampus, deletedStudent } from '../store';
 import EditCampus from './EditCampus';
+import SingleStudent from './SingleStudent';
+
+const studentDeleteHandler = (event) => {
+  axios.delete(`/api/students/${event.target.value}`)
+  .then( response => {
+    const action = deletedStudent(response.data);
+    store.dispatch(action);
+  })
+}
 
 export default class Campuses extends React.Component {
   constructor() {
@@ -30,16 +39,17 @@ export default class Campuses extends React.Component {
     let currentCampus = store.getState().campus;
     return (
       <div>
-        <h2>Campus: {currentCampus.name}</h2>
+        <div className="campus-banner" >
+          <img className="campus-banner-img" src={currentCampus.imageURL} />
+          <h2 className="campus-banner-name" >Campus: {currentCampus.name}</h2>
+        </div>
         <EditCampus />
         <h3>Students</h3>
         {
           store.getState().students.map( student => {
             return (
               student.campusId === currentCampus.id &&
-              <div key={student.id}>
-                <Link to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link>
-              </div>
+              <SingleStudent key={student.id} student={student} campus={currentCampus} clickHandler={studentDeleteHandler} />
             )
           })
         }
