@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { gotStudent } from './student';
 
 // Actions
 const GOT_STUDENTS = 'GOT_STUDENTS';
@@ -45,6 +46,21 @@ export function deleteStudent(id) {
     .then( student => {
       const action = deletedStudent(student);
       dispatch(action);
+    });
+  }
+}
+
+export function editStudent(modifiedStudent) {
+  return function thunk(dispatch) {
+    axios.put('/api/students', modifiedStudent)
+    // Put receives array, index 1 has returned object option as set in API
+    // .then((res => res[1]))
+    .then( res => res.data )
+    .then( updatedStudent => {
+      // Update student in students (array)
+      dispatch(editedStudent(updatedStudent));
+      // Update student in student (singular {})
+      dispatch(gotStudent(updatedStudent));
     });
   }
 }

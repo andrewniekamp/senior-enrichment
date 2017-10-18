@@ -1,21 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
-import store, { deletedCampus } from '../store';
+import store, { deleteCampus } from '../store';
 import AddCampus from './AddCampus';
-
-function clickHandler(event) {
-  axios.delete(`/api/campuses/${event.target.value}`)
-    .then(response => {
-      const action = deletedCampus(response.data);
-      store.dispatch(action);
-    })
-}
 
 export default class Campuses extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = store.getState();
   }
 
@@ -33,14 +24,14 @@ export default class Campuses extends React.Component {
         <h2>Campuses</h2>
         <div className="campus-container">
           {
-            this.state.campuses.map(campus => {
+            // Sort them by ID, so newly added campuses render at the top
+            this.state.campuses.sort((val1, val2) => val2.id - val1.id).map(campus => {
               return (
                 <div key={campus.id} className="campus-item">
                   <h3><Link to={`/campuses/${campus.id}`}>{campus.name}</Link></h3>
                   <img src={campus.imageURL} alt="Space!" />
                   <button
-                    value={campus.id}
-                    onClick={clickHandler}>
+                    onClick={() => store.dispatch(deleteCampus(campus.id))}>
                     Delete</button>
                 </div>
               )

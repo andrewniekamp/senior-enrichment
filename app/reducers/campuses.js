@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { gotCampus } from './campus';
 
 // Actions
 const GOT_CAMPUSES = 'GOT_CAMPUSES';
@@ -34,6 +35,31 @@ export function fetchCampuses() {
     .then( campuses => {
       const action = gotCampuses(campuses);
       dispatch(action);
+    });
+  }
+}
+
+export function deleteCampus(id) {
+  return function thunk(dispatch) {
+    axios.delete(`/api/campuses/${id}`)
+    .then( res => res.data)
+    .then( campus => {
+      const action = deletedCampus(campus);
+      dispatch(action);
+    });
+  }
+}
+
+export function editCampus(modifiedCampus) {
+  return function thunk(dispatch) {
+    axios.put('/api/campuses', modifiedCampus)
+    // Put receives array, index 1 has returned object option as set in API
+    .then( res => res.data )
+    .then( updatedCampus => {
+      // Update campus in campuses (array)
+      dispatch(editedCampus(updatedCampus));
+      // Update campus in campus (singular {})
+      dispatch(gotCampus(updatedCampus));
     });
   }
 }

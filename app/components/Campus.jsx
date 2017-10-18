@@ -1,7 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 
-import store, { gotCampus } from '../store';
+import store, { fetchCampus } from '../store';
 import EditCampus from './EditCampus';
 import SingleStudent from './SingleStudent';
 
@@ -14,12 +13,7 @@ export default class Campuses extends React.Component {
   componentDidMount() {
     this.unsubscribe = store.subscribe( () => this.setState(store.getState()));
 
-    axios.get(`/api/campuses/${this.props.match.params.campusId}`)
-    .then( res =>  res.data)
-    .then( campus => {
-      const action = gotCampus(campus);
-      store.dispatch(action);
-    });
+    store.dispatch(fetchCampus(this.props.match.params.campusId));
   }
 
   componentWillUnmount() {
@@ -27,20 +21,20 @@ export default class Campuses extends React.Component {
   }
 
   render() {
-    let currentCampus = store.getState().campus;
+    let campus = store.getState().campus;
     return (
       <div>
         <div className="campus-banner" >
-          <img className="campus-banner-img" src={currentCampus.imageURL} />
-          <h2 className="campus-banner-name" >Campus: {currentCampus.name}</h2>
+          <img className="campus-banner-img" src={campus.imageURL} />
+          <h2 className="campus-banner-name" >Campus: {campus.name}</h2>
         </div>
-        <EditCampus />
+        <EditCampus campus={campus} />
         <h3>Students</h3>
         {
-          store.getState().students.map( student => {
+          this.state.students.map( student => {
             return (
-              student.campusId === currentCampus.id &&
-              <SingleStudent key={student.id} student={student} campus={currentCampus} />
+              student.campusId === campus.id &&
+              <SingleStudent key={student.id} student={student} campus={campus} />
             )
           })
         }

@@ -1,12 +1,12 @@
 import React from 'react';
-import axios from 'axios';
 
-import store, { editedStudent, gotStudent } from '../store';
+import store, { editStudent } from '../store';
 
 export default class EditStudent extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
+      store: store.getState(),
       // This is needed as a holder for the value
       // It comes into the form as props, but further renders
       // will show updatedCampus (id of selected campus)
@@ -17,7 +17,7 @@ export default class EditStudent extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = store.subscribe( () => this.setState(store.getState()));
+    this.unsubscribe = store.subscribe(() => this.setState({ store: store.getState() }));
   }
 
   componentWillUnmount() {
@@ -31,36 +31,32 @@ export default class EditStudent extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     // Only assign new values if something is defined, otherwise keep prev values
-    let firstName = event.target.newFirstName.value || store.getState().student.firstName;
-    let lastName = event.target.newLastName.value || store.getState().student.lastName;
-    let email = event.target.newEmail.value || store.getState().student.email;
-    let campusId = this.state.updatedCampus;
-    let id = store.getState().student.id;
-    axios.put('/api/students', { firstName, lastName, email, campusId, id })
-    .then( (res) => {
-      let updatedStudent = res.data[1];
-      // Put receives array, index 1 has returned object option as set in API
-      const editAction = editedStudent(updatedStudent);
-      store.dispatch(editAction);
-      const setCurrentAction = gotStudent(updatedStudent);
-      store.dispatch(setCurrentAction);
-    })
+    let studentObj = {
+      firstName: event.target.newFirstName.value || this.props.student.firstName,
+      lastName: event.target.newLastName.value || this.props.student.lastName,
+      email: event.target.newEmail.value || this.props.student.email,
+      campusId: this.state.updatedCampus || this.props.student.campusId,
+      id: this.props.student.id
+    };
+    store.dispatch(editStudent(studentObj));
+    // Reset form
+    document.getElementById('edit-student-form').reset();
   }
 
   render() {
-    let currentStudent = store.getState().student;
+    let currentStudent = this.state.store.student;
     return (
       <div className="form-container">
-        <form onSubmit={this.handleSubmit}>
+        <form id="edit-student-form" onSubmit={this.handleSubmit}>
           <div className="input-group input-group-lg">
-            <label htmlFor="first-name-input">Update Last Name</label>
+            <label htmlFor="first-name-input">Update First Name</label>
             <input
               id="first-name-input"
               name="newFirstName"
               type="text"
               placeholder={currentStudent.firstName}
             />
-            <label htmlFor="last-name-input">Update First Name</label>
+            <label htmlFor="last-name-input">Update Last Name</label>
             <input
               id="last-name-input"
               name="newLastName"
@@ -83,17 +79,17 @@ export default class EditStudent extends React.Component {
               value={this.state.updatedCampus || this.props.campusId}
               onChange={this.handleChange}
             >
-            {
-              store.getState().campuses.map( campus => {
-                return (
-                  <option
-                    key={campus.id}
-                    value={campus.id}>
-                    {campus.name}
-                  </option>
-                )
-              })
-            }
+              {
+                this.state.store.campuses.map(campus => {
+                  return (
+                    <option
+                      key={campus.id}
+                      value={campus.id}>
+                      {campus.name}
+                    </option>
+                  )
+                })
+              }
             </select>
             <button type="submit">Update</button>
           </div>

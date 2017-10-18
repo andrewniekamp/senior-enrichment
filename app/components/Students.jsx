@@ -20,8 +20,7 @@ export default class Students extends React.Component {
       <div>
         <AddStudent />
         <h2>Students</h2>
-        {
-          this.state.students.map(student => {
+        { this.state.students.map(student => {
             return (
               <SingleStudent key={student.id} student={student} canDelete={true} />
             )

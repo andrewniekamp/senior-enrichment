@@ -2,11 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import store, { deleteStudent } from '../store';
 
-// TODO: IS THIS THE BEST PLACE FOR THIS?
-const clickHandler = (event) => {
-  store.dispatch(deleteStudent(event.target.value));
-}
-
 const SingleStudent = (props) => {
   return (
     <div className="student-container">
@@ -15,9 +10,8 @@ const SingleStudent = (props) => {
         // Only renders delete if canDelete prop was passed
         props.canDelete &&
         <button
-        value={props.student.id}
-        onClick={clickHandler}>
-        Delete
+          onClick={() => store.dispatch(deleteStudent(props.student.id))}>
+          Delete
         </button>
       }
     </div>

@@ -32,17 +32,19 @@ api.post('/campuses/add', (req, res) => {
 })
 
 api.put('/campuses', (req, res) => {
-	db.model('campus').update({
-		name: req.body.name,
-		imageURL: req.body.imageURL
-	}, {
-		where: { id: req.body.id },
-		returning: true,
-		plain: true
-	})
-	.then(response => {
-		res.send(response);
-	})
+	db.model('campus').findById(req.body.id)
+		.then(campusToUpdate => {
+			campusToUpdate.update({
+				name: req.body.name,
+				imageURL: req.body.imageURL,
+			}, {
+					returning: true,
+					plain: true
+				})
+				.then(response => {
+					res.send(response);
+				})
+		})
 })
 
 api.delete('/campuses/:id', (req, res) => {
@@ -74,25 +76,28 @@ api.post('/students/add', (req, res) => {
 		email: req.body.email,
 		campusId: req.body.campusId
 	})
-	.then(newStudent => {
-		res.send(newStudent);
-	})
+		.then(newStudent => {
+			res.send(newStudent);
+		})
 })
 
 api.put('/students', (req, res) => {
-	db.model('student').update({
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
-		campusId: req.body.campusId,
-		email: req.body.email
-	}, {
-		where: { id: req.body.id },
-		returning: true,
-		plain: true
-	})
-	.then(response => {
-		res.send(response);
-	})
+	db.model('student').findById(req.body.id)
+		.then(studentToUpdate => {
+			console.log(studentToUpdate)
+			studentToUpdate.update({
+				firstName: req.body.firstName,
+				lastName: req.body.lastName,
+				campusId: req.body.campusId,
+				email: req.body.email
+			}, {
+					returning: true,
+					plain: true
+				})
+				.then(response => {
+					res.send(response);
+				})
+		})
 })
 
 api.delete('/students/:id', (req, res) => {
