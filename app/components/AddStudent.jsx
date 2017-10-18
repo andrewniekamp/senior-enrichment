@@ -56,34 +56,48 @@ export default class AddCampus extends React.Component {
     return (
       <div className="form-container">
         <form onSubmit={this.handleSubmit}>
-          <div className="input-group input-group-lg">
-            <label htmlFor="first-name-input">First Name</label>
+          <div className="form-group">
+            <label className="form-label" htmlFor="first-name-input">First Name</label>
             <input
+              required
               id="first-name-input"
+              className="form-input"
               name="newFirstName"
               type="text"
               value={this.state.newFirstName}
               onChange={this.handleFirstNameChange}
             />
-            <label htmlFor="last-name-input">Last Name</label>
+          </div>
+          <div className="form-group">
+            <label className="form-label" htmlFor="last-name-input">Last Name</label>
             <input
+              required
               id="last-name-input"
+              className="form-input"
               name="newLastName"
               type="text"
               value={this.state.newLastName}
               onChange={this.handleLastNameChange}
             />
-            <label htmlFor="email-input">Email</label>
+          </div>
+          <div className="form-group">
+            <label className="form-label" htmlFor="email-input">Email</label>
             <input
+              required
               id="email-input"
+              className="form-input"
               name="newEmail"
               type="text"
               value={this.state.newEmail}
               onChange={this.handleEmailChange}
             />
-            <label htmlFor="campus-selection">Campus</label>
+          </div>
+          <div className="form-group">
+            <label className="form-label" htmlFor="campus-selection">Campus</label>
             <select
+              required
               id="campus-selection"
+              className="form-select"
               name="associatedCampus"
             >
             {
@@ -94,8 +108,8 @@ export default class AddCampus extends React.Component {
               })
             }
             </select>
-            <button type="submit">Save</button>
           </div>
+          <button className="form-button" type="submit">Save</button>
         </form>
       </div>
     );

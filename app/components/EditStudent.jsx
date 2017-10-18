@@ -48,31 +48,41 @@ export default class EditStudent extends React.Component {
     return (
       <div className="form-container">
         <form id="edit-student-form" onSubmit={this.handleSubmit}>
-          <div className="input-group input-group-lg">
-            <label htmlFor="first-name-input">Update First Name</label>
+          <div className="form-group">
+            <label className="form-label" htmlFor="first-name-input">Update First Name</label>
             <input
               id="first-name-input"
+              className="form-input"
               name="newFirstName"
               type="text"
               placeholder={student.firstName}
             />
-            <label htmlFor="last-name-input">Update Last Name</label>
+          </div>
+          <div className="form-group">
+            <label className="form-label" htmlFor="last-name-input">Update Last Name</label>
             <input
               id="last-name-input"
+              className="form-input"
               name="newLastName"
               type="text"
               placeholder={student.lastName}
             />
-            <label htmlFor="email-input">Update Email</label>
+          </div>
+          <div className="form-group">
+            <label className="form-label" htmlFor="email-input">Update Email</label>
             <input
               id="email-input"
+              className="form-input"
               name="newEmail"
               type="text"
               placeholder={student.email}
             />
+          </div>
+          <div className="form-group">
             <label htmlFor="campus-selection">Update Campus</label>
             <select
               id="campus-selection"
+              className="form-select"
               name="associatedCampus"
               // Must set to updatedCampus if you can, otherwise
               // it gets stuck on props and can't change
@@ -96,8 +106,8 @@ export default class EditStudent extends React.Component {
                 })
               }
             </select>
-            <button type="submit">Update</button>
           </div>
+          <button className="form-button" type="submit">Update</button>
         </form>
       </div>
     );

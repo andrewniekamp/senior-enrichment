@@ -40,25 +40,31 @@ export default class AddCampus extends React.Component {
     return (
       <div className="form-container">
         <form onSubmit={this.handleSubmit}>
-          <div className="input-group input-group-lg">
-            <label htmlFor="campus-name-input">Campus Name</label>
+          <div className="form-group">
+            <label className="form-label" htmlFor="campus-name-input">Campus Name</label>
             <input
+              required
               id="campus-name-input"
+              className="form-input"
               name="newName"
               type="text"
               value={this.state.newName}
               onChange={this.handleNameChange}
             />
-            <label htmlFor="campus-image-input">Image URL</label>
+          </div>
+          <div className="form-group">
+            <label className="form-label" htmlFor="campus-image-input">Image URL</label>
             <input
+              required
               id="campus-image-input"
+              className="form-input"
               name="newImageURL"
               type="text"
               value={this.state.newImageURL}
               onChange={this.handleImageURLChange}
             />
-            <button type="submit">Save</button>
           </div>
+          <button className="form-button" type="submit">Save</button>
         </form>
       </div>
     );

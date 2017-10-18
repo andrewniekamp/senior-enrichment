@@ -16,10 +16,11 @@ const AssignStudent = (props) => {
   return (
     <div className="form-container">
       <form id="edit-student-form" onSubmit={handleSubmit}>
-        <div className="input-group input-group-lg">
-          <label htmlFor="campus-selection">Assign Student</label>
+        <div className="form-group">
+          <label className="form-label" htmlFor="campus-selection">Assign Student</label>
           <select
             id="campus-selection"
+            className="form-select"
             name="associatedStudent"
           >
             {
@@ -34,8 +35,8 @@ const AssignStudent = (props) => {
               })
             }
           </select>
-          <button type="submit">Assign</button>
         </div>
+        <button className="form-button" type="submit">Assign</button>
       </form>
     </div>
   );

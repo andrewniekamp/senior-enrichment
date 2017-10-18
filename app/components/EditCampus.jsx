@@ -36,23 +36,27 @@ export default class EditCampus extends React.Component {
       <div className="form-container">
         <form id="edit-campus-form" className="form-container" onSubmit={this.handleSubmit}>
           <h3>{this.props.name}</h3>
-          <div className="input-group input-group-lg">
-            <label htmlFor="campus-name-input">Update Campus Name</label>
+          <div className="form-group">
+            <label className="form-label" htmlFor="campus-name-input">Update Campus Name</label>
             <input
               id="campus-name-input"
+              className="form-input"
               name="newName"
               type="text"
               placeholder={campus.name}
             />
-            <label htmlFor="campus-image-input">Update Image URL</label>
+          </div>
+          <div className="form-group">
+            <label className="form-label" htmlFor="campus-image-input">Update Image URL</label>
             <input
               id="campus-image-input"
+              className="form-input"
               name="newImageURL"
               type="text"
               placeholder={campus.imageURL}
             />
-            <button type="submit">Update</button>
           </div>
+          <button className="form-button" type="submit">Update</button>
         </form>
       </div>
     );

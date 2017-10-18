@@ -16,6 +16,7 @@ const SingleStudent = (props) => {
         // Only renders delete if canDelete prop was passed
         props.canDelete &&
         <button
+          className="student-button"
           onClick={() => store.dispatch(deleteStudent(props.student.id))}>
           Delete
         </button>
@@ -23,6 +24,7 @@ const SingleStudent = (props) => {
       {
         props.canUnassign &&
         <button
+          className="student-button"
           onClick={unassignStudent}>
           Unassign
         </button>
