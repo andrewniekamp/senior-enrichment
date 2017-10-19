@@ -9,4 +9,10 @@ api.get('/hello', (req, res) => res.send({ hello: 'world' }))
 api.use('/campuses', require('./campuses'));
 api.use('/students', require('./students'));
 
+api.use((err, req, res, next) => {
+	console.error(err);
+	res.status(err.status || 500);
+	res.send(err);
+});
+
 module.exports = api
