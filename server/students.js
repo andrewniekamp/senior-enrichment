@@ -3,14 +3,14 @@ const db = require('../db');
 
 router.get('/', (req, res, next) => {
 	db.model('student').findAll()
-		.then(student => {
-			res.send(student);
+		.then(students => {
+			res.send(students);
     })
     .catch(next);
 })
 
 router.put('/', (req, res, next) => {
-  db.model('student').findById(req.body.id)
+  db.model('student').findById(req.body.id, { include: [{ model: db.model('campus') }] })
     .then(studentToUpdate => {
       console.log(studentToUpdate)
       studentToUpdate.update({

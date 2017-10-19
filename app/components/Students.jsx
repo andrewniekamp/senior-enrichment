@@ -21,7 +21,7 @@ export default class Students extends React.Component {
         <AddStudent campuses={this.state.campuses} />
         <div className="content-section">
           <h2>Students</h2>
-          {this.state.students.map(student => {
+          {store.getState().students.map(student => {
             return (
               <SingleStudent
                 key={student.id}

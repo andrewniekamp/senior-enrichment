@@ -23,7 +23,6 @@ const EditCampus = (props) => {
       <form id="edit-campus-form" className="form-container" onSubmit={handleSubmit}>
         <h3>Edit Campus</h3>
         <div className="form-inner">
-          <h3>{campus.name}</h3>
           <div className="form-group">
             <label className="form-label" htmlFor="campus-name-input">Update Campus Name</label>
             <input
