@@ -11,7 +11,9 @@ const SingleStudent = (props) => {
   }
   return (
     <div className="student-container">
-      <Link to={`/students/${props.student.id}`}>{props.student.firstName} {props.student.lastName} {props.student.email}</Link>
+      <Link to={`/students/${props.student.id}`}>
+      {props.student.lastName}, {props.student.firstName}</Link>
+      <span> {props.student.email}</span>
       {
         // Only renders delete if canDelete prop was passed
         props.canDelete &&

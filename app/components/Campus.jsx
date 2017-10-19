@@ -32,23 +32,27 @@ export default class Campuses extends React.Component {
           <h2 className="campus-banner-name" >Campus: {campus.name}</h2>
         </div>
         <div className="padded-container">
-          <EditCampus campus={campus} />
-          <AssignStudent
-            students={this.state.students}
-            campusId={campus.id} />
-          <h3>Students</h3>
-          {
-            this.state.students.map(student => {
-              return (
-                student.campusId === campus.id &&
-                <SingleStudent
-                  key={student.id}
-                  student={student}
-                  campus={campus}
-                  canUnassign={true} />
-              )
-            })
-          }
+          <div className="campus-edit-container">
+            <EditCampus campus={campus} />
+            <AssignStudent
+              students={this.state.students}
+              campusId={campus.id} />
+          </div>
+          <div className="content-section">
+            <h3>Students</h3>
+            {
+              this.state.students.map(student => {
+                return (
+                  student.campusId === campus.id &&
+                  <SingleStudent
+                    key={student.id}
+                    student={student}
+                    campus={campus}
+                    canUnassign={true} />
+                )
+              })
+            }
+          </div>
         </div>
       </div>
     )

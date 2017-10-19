@@ -13,8 +13,21 @@ a:visited {
 a:hover {
   color: #F95738;
 }
+button {
+  cursor: pointer;
+}
 .padded-container {
   padding: 8px;
+}
+.content-section {
+  display: flex;
+  max-width: 600px;
+  margin: 0px auto;
+  flex-direction: column;
+}
+.student-container {
+  display: flex;
+  justify-content: space-between;
 }
 /* Navigation Bar */
 .nav-container {
@@ -64,6 +77,9 @@ a:hover {
 }
 
 /* Forms */
+.form-container {
+
+}
 .form-container form {
   text-align: center;
   border: 2px solid #F4D35E;
@@ -81,19 +97,33 @@ a:hover {
   flex-wrap: wrap;
 }
 .form-group {
-  padding: 5px;
+  padding: 7px;
+  background-color: #D6D6C0;
+  border: 1px solid #F95738;
+  margin: 5px;
 }
 .form-label {
   margin: 5px;
+  font-size: 16px;
 }
 .form-input {
-
+  border: 1px solid #F95738;
+  font-size: 16px;
 }
 .form-select {
-
+  font-size: 16px;
 }
 .form-button {
-
+  font-size: 16px;
+  background-color: #083D77;
+  color: white;
+  border: 1px solid #F95738;
+  margin-top: 5px;
+  padding: 8px;
+}
+.form-button:hover {
+  background-color: #F95738;
+  border: 1px solid #083D77;
 }
 .student-button, .campus-button {
   background-color: #F95738;
@@ -101,8 +131,14 @@ a:hover {
   border: none;
   margin: 5px;
 }
+.student-button:hover, .campus-button:hover {
+  color: #083D77;
+}
 
 /* Campuses */
+.campus-edit-container {
+
+}
 .campus-container {
   display: flex;
   flex-flow: row wrap;

@@ -19,13 +19,18 @@ export default class Students extends React.Component {
     return (
       <div className="padded-container">
         <AddStudent campuses={this.state.campuses} />
-        <h2>Students</h2>
-        { this.state.students.map(student => {
+        <div className="content-section">
+          <h2>Students</h2>
+          {this.state.students.map(student => {
             return (
-              <SingleStudent key={student.id} student={student} canDelete={true} />
+              <SingleStudent
+                key={student.id}
+                student={student}
+                canDelete={true} />
             )
           })
-        }
+          }
+        </div>
       </div>
     )
   }
