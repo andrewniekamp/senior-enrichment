@@ -61,12 +61,11 @@ const EditStudent = (props) => {
               id="campus-selection"
               className="form-select"
               name="associatedCampus"
-              defaultValue={student.campusId}
             >
               {
                 // If the student is unassigned, default to 'Unassigned'
                 !student.campusId &&
-                <option disabled>Unassigned</option>
+                <option selected disabled >Unassigned</option>
               }
               {
                 props.campuses.map(campus => {
