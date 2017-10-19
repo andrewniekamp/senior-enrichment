@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import store, { deleteStudent, editStudent } from '../store';
 
-
 const SingleStudent = (props) => {
   function unassignStudent() {
     let unassignedStudent = Object.assign({}, props.student, {campusId: null})

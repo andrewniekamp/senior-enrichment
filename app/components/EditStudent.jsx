@@ -61,8 +61,7 @@ const EditStudent = (props) => {
               id="campus-selection"
               className="form-select"
               name="associatedCampus"
-              // Must set to updatedCampus if you can, otherwise
-              // it gets stuck on props and can't change
+              defaultValue={student.campusId}
             >
               {
                 // If the student is unassigned, default to 'Unassigned'
