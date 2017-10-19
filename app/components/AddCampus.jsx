@@ -33,7 +33,6 @@ const AddCampus = () => {
           <div className="form-group">
             <label className="form-label" htmlFor="campus-image-input">Image URL</label>
             <input
-              required
               id="campus-image-input"
               className="form-input"
               name="newImageURL"
