@@ -216,9 +216,6 @@ button {
 }
 
 @media (max-width: 500px) {
-  body {
-    min-width: 325px;
-  }
   #main {
     padding-top: 75px;
   }
