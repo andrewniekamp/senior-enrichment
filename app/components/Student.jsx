@@ -25,14 +25,17 @@ export default class Student extends React.Component {
     return (
       <div className="padded-container">
         <h2>Student: {student.firstName} {student.lastName}</h2>
-        <EditStudent
-          student={student}
-          campusId={student.campusId} />
+        <EditStudent student={student} campuses={this.state.campuses} />
         <h3>Campus</h3>
         {
-          // Don't need to map by id since api is eager loading the current student's campus
-          student.campus &&
-            <Link to={`/campuses/${student.campus.id}`}>{student.campus.name}</Link>
+          this.state.campuses.map(campus => {
+            return (
+              student.campusId === campus.id &&
+              <div key={student.id}>
+                <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
+              </div>
+            )
+          })
         }
       </div>
     )
