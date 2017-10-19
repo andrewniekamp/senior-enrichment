@@ -39,6 +39,12 @@ button {
   display: flex;
   justify-content: space-between;
 }
+/* Student */
+#student-campus {
+  font-size: 20px;
+  margin-bottom: 20px;
+  display: block;
+}
 /* Navigation Bar */
 .nav-container {
   display: flex;
@@ -196,7 +202,9 @@ button {
   margin: 0;
   text-align: center;
   line-height: 150px;
-  background-color: rgba(255, 255, 255, 0.4)
+  font-size: 30px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 .campus-banner-img {
   height: 150px;

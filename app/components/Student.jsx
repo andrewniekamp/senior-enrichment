@@ -25,18 +25,17 @@ export default class Student extends React.Component {
     return (
       <div className="padded-container">
         <h2>Student: {student.firstName} {student.lastName}</h2>
-        <EditStudent student={student} campuses={this.state.campuses} />
-        <h3>Campus</h3>
+        <span id="student-campus"> Campus:
         {
           this.state.campuses.map(campus => {
             return (
               student.campusId === campus.id &&
-              <div key={student.id}>
-                <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
-              </div>
+              <Link key={campus.id} to={`/campuses/${campus.id}`}>{campus.name}</Link>
             )
           })
         }
+        </span>
+        <EditStudent student={student} campuses={this.state.campuses} />
       </div>
     )
   }
