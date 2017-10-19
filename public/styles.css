@@ -90,7 +90,7 @@ button {
 #home-container video {
   position: relative;
   min-width: 100vw;
-  min-height: calc(100vh - 78px);
+  height: calc(100vh - 78px);
 }
 
 /* Forms */
@@ -115,6 +115,7 @@ button {
   background-color: #D6D6C0;
   border: 1px solid #F95738;
   margin: 5px;
+  width: 345px;
 }
 .form-label {
   margin: 5px;
@@ -225,6 +226,7 @@ button {
     position: fixed;
     width: 100%;
     top: 0;
+    left: 0;
   }
   .student-container {
     /* font-size: 14px; */
@@ -239,9 +241,12 @@ button {
     flex-direction: row;
   }
   .nav-link-container a {
-    font-size: 14px;
+    font-size: 18px;
   }
   #assign-student-label {
     display: none;
+  }
+  .form-group {
+    width: 321px;
   }
 }
