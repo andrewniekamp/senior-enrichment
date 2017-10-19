@@ -75,7 +75,7 @@ button {
 /* Home */
 #home-container {
   overflow: hidden;
-  background-color: black;
+  background-color: #2D3047;
   position: relative;
 }
 #video-overlay {
@@ -162,20 +162,21 @@ button {
 .link-box {
   height: 225px;
   width: 100%;
+  background-color: #083D77;
 }
 .link-box h3 {
   margin: 0;
   line-height: 50px;
   font-size: 25px;
+  color: #EBEBD3;
 }
 .campus-item {
   text-align: center;
-  border: 2px solid #083D77;
-  background-color: #EBEBD3;
+  border: 2px solid #F95738;
   width: 300px;
   height: 260px;
   margin: 10px auto;
-  box-shadow: 2px 3px 3px 1px rgba(255, 255, 255, .3);
+  box-shadow: 2px 3px 3px 1px rgba(0, 0, 0, .4);
   overflow: none;
 }
 .campus-item img {

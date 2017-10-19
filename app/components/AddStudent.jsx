@@ -49,7 +49,7 @@ const AddStudent = (props) => {
               id="email-input"
               className="form-input"
               name="newEmail"
-              type="text"
+              type="email"
             />
           </div>
           <div className="form-group">
