@@ -34,6 +34,9 @@ export default class Student extends React.Component {
             )
           })
         }
+        {
+          !student.campusId && '(Unassigned)'
+        }
         </span>
         <EditStudent student={student} campuses={this.state.campuses} />
       </div>

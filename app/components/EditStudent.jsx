@@ -7,11 +7,15 @@ const EditStudent = (props) => {
   function handleSubmit(event) {
     event.preventDefault();
     // Only assign new values if something is defined, otherwise keep prev values
+    let newCampusId;
+    if (event.target.associatedCampus.value === 'UNASSIGNED') newCampusId = null;
+    else newCampusId = event.target.associatedCampus.value || props.student.campusId;
+    console.log(newCampusId);
     let studentObj = {
       firstName: event.target.newFirstName.value || props.student.firstName,
       lastName: event.target.newLastName.value || props.student.lastName,
       email: event.target.newEmail.value || props.student.email,
-      campusId: event.target.associatedCampus.value || props.student.campusId,
+      campusId: newCampusId,
       id: props.student.id
     };
     store.dispatch(editStudent(studentObj));
@@ -65,19 +69,26 @@ const EditStudent = (props) => {
               {
                 // If the student is unassigned, default to 'Unassigned'
                 !student.campusId &&
-                <option selected disabled >Unassigned</option>
+                <option value="UNASSIGNED">Unassigned</option>
+              }
+              {
+                // Didn't prefer to use two maps here, but was getting
+                // React error message to not set 'selected' on options...
+                props.campuses.map(campus => {
+                  return (
+                      campus.id === student.campusId &&
+                      <option
+                        key={campus.id}
+                        value={campus.id}>
+                        {campus.name}
+                      </option>
+                  )
+                })
               }
               {
                 props.campuses.map(campus => {
                   return (
-                      campus.id === student.campusId ?
-                      // Selected if matches the student's campusId
-                      <option
-                        selected
-                        key={campus.id}
-                        value={campus.id}>
-                        {campus.name}
-                      </option> :
+                      campus.id !== student.campusId &&
                       <option
                         key={campus.id}
                         value={campus.id}>
