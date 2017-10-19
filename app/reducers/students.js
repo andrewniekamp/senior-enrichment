@@ -80,16 +80,22 @@ export function editStudent(modifiedStudent) {
   }
 }
 
+const compareFunc = (prevVal, nextVal) => {
+  if (prevVal.lastName < nextVal.lastName) return -1;
+  if (prevVal.lastName > nextVal.lastName) return 1;
+  return 0;
+}
+
 // Reducer
 export default function reducer(state = [], action) {
   switch (action.type) {
     case GOT_STUDENTS:
-      return action.students;
+      return action.students.sort(compareFunc);
     case ADDED_STUDENT:
-      return [...state, action.student];
+      return [...state, action.student].sort(compareFunc);
     case EDITED_STUDENT:
       // Returns all from prevState except one that needed update, then concats updated one from action
-      return state.filter( student => (student.id !== action.student.id)).concat(action.student);
+      return state.filter( student => (student.id !== action.student.id)).concat(action.student).sort(compareFunc);
     case DELETED_STUDENT:
       // Returns all from prevState except one that was deleted
       return state.filter( student => (student.id !== action.student.id));
