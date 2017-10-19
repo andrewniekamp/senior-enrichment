@@ -25,6 +25,16 @@ button {
   margin: 0px auto;
   flex-direction: column;
 }
+#welcome-message {
+  position: absolute;
+  text-align: center;
+  width: 100vw;
+  line-height: calc(100vh - 78px);
+  margin: 0;
+  z-index: 3;
+  color: white;
+}
+/* Single Student */
 .student-container {
   display: flex;
   justify-content: space-between;
@@ -35,6 +45,7 @@ button {
   height: 75px;
   justify-content: space-between;
   background-color: #EBEBD3;
+  border-bottom: 3px solid #083D77;
 }
 .logo {
   max-height: 55px;
@@ -65,7 +76,7 @@ button {
   position: absolute;
   left: 0;
   top: 0;
-  height: 100%;
+  height: calc(100vh - 78px);
   width: 100%;
   background-color: rgba(255, 255, 255, 0.4);
   z-index: 1;
@@ -73,13 +84,10 @@ button {
 #home-container video {
   position: relative;
   min-width: 100vw;
-  min-height: 100vh;
+  min-height: calc(100vh - 78px);
 }
 
 /* Forms */
-.form-container {
-
-}
 .form-container form {
   text-align: center;
   border: 2px solid #F4D35E;
@@ -136,9 +144,6 @@ button {
 }
 
 /* Campuses */
-.campus-edit-container {
-
-}
 .campus-container {
   display: flex;
   flex-flow: row wrap;
@@ -193,13 +198,42 @@ button {
   line-height: 150px;
   background-color: rgba(255, 255, 255, 0.4)
 }
-.campus-banner {
-  margin: 0 -8px;
-}
 .campus-banner-img {
-  width: 100%;
   height: 150px;
+  width: 100vw;
   object-fit: cover;
   position: absolute;
   z-index: -1;
+}
+
+@media (max-width: 500px) {
+  body {
+    min-width: 325px;
+  }
+  #main {
+    padding-top: 75px;
+  }
+  .nav-container {
+    position: fixed;
+    width: 100%;
+    top: 0;
+  }
+  .student-container {
+    /* font-size: 14px; */
+    flex-flow: column;
+    margin-bottom: 20px;
+    margin-left: 20%;
+  }
+  .student-button {
+    max-width: 70px;
+  }
+  .nav-link-container {
+    flex-direction: row;
+  }
+  .nav-link-container a {
+    font-size: 14px;
+  }
+  #assign-student-label {
+    display: none;
+  }
 }

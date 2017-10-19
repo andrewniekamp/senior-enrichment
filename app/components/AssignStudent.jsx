@@ -19,7 +19,7 @@ const AssignStudent = (props) => {
         <h3>Assign Student</h3>
         <div className="form-inner">
           <div className="form-group">
-            <label className="form-label" htmlFor="campus-selection">Student</label>
+            <label id="assign-student-label" className="form-label" htmlFor="campus-selection">Student</label>
             <select
               id="campus-selection"
               className="form-select"
