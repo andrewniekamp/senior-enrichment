@@ -11,7 +11,7 @@ export default class Student extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = store.subscribe( () => this.setState(store.getState()));
+    this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
 
     store.dispatch(fetchStudent(this.props.match.params.studentId))
   }
@@ -25,10 +25,12 @@ export default class Student extends React.Component {
     return (
       <div className="padded-container">
         <h2>Student: {student.firstName} {student.lastName}</h2>
-        <EditStudent student={student} campusId={student.campusId} />
+        <EditStudent
+          student={student}
+          campusId={student.campusId} />
         <h3>Campus</h3>
         {
-          this.state.campuses.map( campus => {
+          this.state.campuses.map(campus => {
             return (
               student.campusId === campus.id &&
               <div key={student.id}>

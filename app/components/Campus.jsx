@@ -12,7 +12,7 @@ export default class Campuses extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = store.subscribe( () => this.setState(store.getState()));
+    this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
 
     store.dispatch(fetchCampus(this.props.match.params.campusId));
   }
@@ -26,18 +26,26 @@ export default class Campuses extends React.Component {
     return (
       <div>
         <div className="campus-banner" >
-          <img className="campus-banner-img" src={campus.imageURL} />
+          <img
+            className="campus-banner-img"
+            src={campus.imageURL} />
           <h2 className="campus-banner-name" >Campus: {campus.name}</h2>
         </div>
         <div className="padded-container">
           <EditCampus campus={campus} />
-          <AssignStudent students={this.state.students} campusId={campus.id} />
+          <AssignStudent
+            students={this.state.students}
+            campusId={campus.id} />
           <h3>Students</h3>
           {
-            this.state.students.map( student => {
+            this.state.students.map(student => {
               return (
                 student.campusId === campus.id &&
-                <SingleStudent key={student.id} student={student} campus={campus} canUnassign={true} />
+                <SingleStudent
+                  key={student.id}
+                  student={student}
+                  campus={campus}
+                  canUnassign={true} />
               )
             })
           }
