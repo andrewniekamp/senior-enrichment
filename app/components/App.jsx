@@ -3,11 +3,10 @@ import { Route, Switch } from 'react-router-dom';
 
 import store, { fetchCampuses, fetchStudents } from '../store';
 import Home from './Home';
-import Campus from './Campus';
 import CampusContainer from './CampusContainer';
 import Campuses from './Campuses';
+import StudentsContainer from './StudentsContainer';
 import Student from './Student';
-import Students from './Students';
 import Navbar from './Navbar';
 
 const App = () => {
@@ -20,7 +19,7 @@ const App = () => {
         <Route path="/campuses/:campusId" component={CampusContainer} />
         <Route exact path="/campuses" component={Campuses} />
         <Route path="/students/:studentId" component={Student} />
-        <Route exact path="/students" component={Students} />
+        <Route exact path="/students" component={StudentsContainer} />
         <Route path="/" component={Home} />
       </Switch>
     </div>

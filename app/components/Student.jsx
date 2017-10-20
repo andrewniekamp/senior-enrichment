@@ -13,7 +13,7 @@ export default class Student extends React.Component {
   componentDidMount() {
     this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
 
-    store.dispatch(fetchStudent(this.props.match.params.studentId))
+    // store.dispatch(fetchStudent(this.props.match.params.studentId))
   }
 
   componentWillUnmount() {

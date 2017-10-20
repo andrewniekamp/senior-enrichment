@@ -61,6 +61,7 @@ const AddStudent = (props) => {
               name="associatedCampus"
             >
             {
+              props.campuses &&
               props.campuses.map( campus => {
                 return (
                   <option key={campus.id} value={campus.id}>{campus.name}</option>
