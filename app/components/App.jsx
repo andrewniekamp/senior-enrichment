@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import store, { fetchCampuses, fetchStudents } from '../store';
 import Home from './Home';
 import Campus from './Campus';
+import CampusContainer from './CampusContainer';
 import Campuses from './Campuses';
 import Student from './Student';
 import Students from './Students';
@@ -16,7 +17,7 @@ const App = () => {
     <div>
       <Navbar />
       <Switch>
-        <Route path="/campuses/:campusId" component={Campus} />
+        <Route path="/campuses/:campusId" component={CampusContainer} />
         <Route exact path="/campuses" component={Campuses} />
         <Route path="/students/:studentId" component={Student} />
         <Route exact path="/students" component={Students} />
