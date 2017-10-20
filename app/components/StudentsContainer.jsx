@@ -10,12 +10,11 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = {
-  fetchStudents
+
 }
 
 const StudentsContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Students);
 
 export default StudentsContainer;

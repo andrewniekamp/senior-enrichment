@@ -6,7 +6,7 @@ import Home from './Home';
 import CampusContainer from './CampusContainer';
 import Campuses from './Campuses';
 import StudentsContainer from './StudentsContainer';
-import Student from './Student';
+import StudentContainer from './StudentContainer';
 import Navbar from './Navbar';
 
 const App = () => {
@@ -18,7 +18,7 @@ const App = () => {
       <Switch>
         <Route path="/campuses/:campusId" component={CampusContainer} />
         <Route exact path="/campuses" component={Campuses} />
-        <Route path="/students/:studentId" component={Student} />
+        <Route path="/students/:studentId" component={StudentContainer} />
         <Route exact path="/students" component={StudentsContainer} />
         <Route path="/" component={Home} />
       </Switch>

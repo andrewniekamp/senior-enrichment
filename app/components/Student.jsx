@@ -1,45 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import store, { fetchStudent } from '../store';
 import EditStudent from './EditStudent';
 
-export default class Student extends React.Component {
-  constructor() {
-    super()
-    this.state = store.getState();
-  }
+const Student = (props) => {
 
-  componentDidMount() {
-    this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
+  if (!props.student.id) props.fetchStudent(props.match.params.studentId)
 
-    // store.dispatch(fetchStudent(this.props.match.params.studentId))
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-
-  render() {
-    let student = this.state.student;
-    return (
-      <div className="padded-container">
-        <h2>Student: {student.firstName} {student.lastName}</h2>
-        <span id="student-campus"> Campus:
-        {
-          this.state.campuses.map(campus => {
-            return (
-              student.campusId === campus.id &&
-              <Link key={campus.id} to={`/campuses/${campus.id}`}>{campus.name}</Link>
-            )
-          })
-        }
-        {
-          !student.campusId && '(Unassigned)'
-        }
-        </span>
-        <EditStudent student={student} campuses={this.state.campuses} />
-      </div>
-    )
-  }
+  return (
+    <div className="padded-container">
+      <h2>Student: {props.student.firstName} {props.student.lastName}</h2>
+      <span id="student-campus"> Campus:
+      {
+        props.campuses.map(campus => {
+          return (
+            props.student.campusId === campus.id &&
+            <Link key={campus.id} to={`/campuses/${campus.id}`}>{campus.name}</Link>
+          )
+        })
+      }
+      {
+        !props.student.campusId && '(Unassigned)'
+      }
+      </span>
+      <EditStudent student={props.student} campuses={props.campuses} />
+    </div>
+  )
 }
+export default Student;
