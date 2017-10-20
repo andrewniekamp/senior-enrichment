@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import store, { deleteStudent, editStudent } from '../store';
 
 const SingleStudent = (props) => {
-  function unassignStudent() {
+  const unassignStudent = () => {
     let unassignedStudent = Object.assign({}, props.student, {campusId: null})
     console.log(unassignedStudent);
     store.dispatch(editStudent(unassignedStudent))

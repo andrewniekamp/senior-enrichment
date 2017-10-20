@@ -80,7 +80,7 @@ export function editStudent(modifiedStudent) {
   }
 }
 
-const compareFunc = (prevVal, nextVal) => {
+export const compareFunc = (prevVal, nextVal) => {
   if (prevVal.lastName < nextVal.lastName) return -1;
   if (prevVal.lastName > nextVal.lastName) return 1;
   return 0;

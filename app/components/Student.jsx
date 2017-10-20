@@ -5,7 +5,7 @@ import EditStudent from './EditStudent';
 
 const Student = (props) => {
 
-  if (!props.student.id) props.fetchStudent(props.match.params.studentId)
+  if (props.student.id !== Number(props.match.params.studentId)) props.fetchStudent(props.match.params.studentId)
 
   return (
     <div className="padded-container">

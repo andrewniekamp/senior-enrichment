@@ -4,7 +4,7 @@ import store, { addCampus } from '../store';
 
 const AddCampus = () => {
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const newCampus = {
       name: event.target.newName.value,

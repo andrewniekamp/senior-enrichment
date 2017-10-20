@@ -3,10 +3,11 @@ import React from 'react';
 import EditCampus from './EditCampus';
 import SingleStudent from './SingleStudent';
 import AssignStudent from './AssignStudent';
+import compareFunc from '../store';
 
 const Campuses = (props) => {
 
-  if (!props.campus.id) props.fetchCampus(props.match.params.campusId)
+  if (props.campus.id !== Number(props.match.params.campusId)) props.fetchCampus(props.match.params.campusId)
 
   return (
     <div>
@@ -26,7 +27,7 @@ const Campuses = (props) => {
         <div className="content-section">
           <h3>Students</h3>
           {
-            props.students.map(student => {
+            props.students.sort(compareFunc).map(student => {
               return (
                 student.campusId === props.campus.id &&
                 <SingleStudent

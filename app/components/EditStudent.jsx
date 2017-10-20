@@ -4,7 +4,7 @@ import store, { editStudent } from '../store';
 
 const EditStudent = (props) => {
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     // Only assign new values if something is defined, otherwise keep prev values
     let newCampusId;

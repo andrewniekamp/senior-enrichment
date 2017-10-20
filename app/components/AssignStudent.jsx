@@ -4,7 +4,7 @@ import store, { editStudent } from '../store';
 
 const AssignStudent = (props) => {
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     let studentObj = {
       id: event.target.associatedStudent.value,

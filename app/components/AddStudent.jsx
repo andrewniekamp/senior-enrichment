@@ -4,7 +4,7 @@ import store, { addStudent } from '../store';
 
 const AddStudent = (props) => {
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const newStudent = {
       firstName: event.target.newFirstName.value,
